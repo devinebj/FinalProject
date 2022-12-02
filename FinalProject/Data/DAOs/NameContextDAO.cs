@@ -35,7 +35,8 @@ namespace FinalProject.Data
 				_context.SaveChanges();
 				return 1;
 			} 
-			catch (Exception) {
+			catch (Exception) 
+			{
 				return 0;
 			}
 		}

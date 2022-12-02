@@ -34,10 +34,14 @@ namespace FinalProject
 			services.AddDbContext<GameContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("Context")));
 			services.AddScoped<IGameContextDAO, GameContextDAO>();
+
+			services.AddDbContext<UserContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("Context")));
+			services.AddScoped<IUserContextDAO, UserContextDAO>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env,	GameContext context)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env,	UserContext context)
 		{
 			if (env.IsDevelopment())
 			{

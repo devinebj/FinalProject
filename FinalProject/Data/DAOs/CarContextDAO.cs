@@ -79,7 +79,8 @@ namespace FinalProject.Data
 				_context.Cars.Add(car);
 				_context.SaveChanges();
 				return 1;
-			} catch (Exception)
+			} 
+			catch (Exception)
 			{
 				return 0;
 			}

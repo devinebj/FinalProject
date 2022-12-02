@@ -57,7 +57,8 @@ namespace FinalProject.Data
 				_context.Games.Update(gameToUpdate);
 				_context.SaveChanges();
 				return 1;
-			} catch (Exception)
+			} 
+			catch (Exception)
 			{
 				return 0;
 			}
@@ -75,7 +76,8 @@ namespace FinalProject.Data
 				_context.Games.Add(game);
 				_context.SaveChanges();
 				return 1;
-			} catch (Exception)
+			} 
+			catch (Exception)
 			{
 				return 0;
 			}
