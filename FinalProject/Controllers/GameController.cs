@@ -2,6 +2,7 @@
 using FinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 
 namespace FinalProject.Controllers
 {
@@ -27,6 +28,11 @@ namespace FinalProject.Controllers
 		[HttpGet("id")]
 		public IActionResult GetGameById(int id)
 		{
+			if(id == null || id == 0)
+			{
+				return Ok(_context.GetAllGames().Take(5));
+			}
+
 			var game = _context.GetGameById(id);
 			if (game == null)
 				return NotFound(id);

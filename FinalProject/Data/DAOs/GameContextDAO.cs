@@ -8,31 +8,31 @@ namespace FinalProject.Data
 {
 	public class GameContextDAO : IGameContextDAO
 	{
-		private GameContext _context;
+		private GameContext context;
 
 		public GameContextDAO(GameContext context)
 		{
-			_context = context;
+			this.context = context;
 		}
 
 		public List<Game> GetAllGames()
 		{
-			return _context.Games.ToList();
+			return context.Games.ToList();
 		}
 
 		public Game GetGameById(int id)
 		{
-			return _context.Games.Where(x => x.Id.Equals(id)).FirstOrDefault();
+			return context.Games.Where(x => x.Id.Equals(id)).FirstOrDefault();
 		}
 
 		public int? RemoveGameById(int id)
 		{
-			var name = GetGameById(id);
-			if (name == null) return null;
+			var game = GetGameById(id);
+			if (game == null) return null;
 			try
 			{
-				_context.Games.Remove(name);
-				_context.SaveChanges();
+				context.Games.Remove(game);
+				context.SaveChanges();
 				return 1;
 			} catch (Exception)
 			{
@@ -54,8 +54,8 @@ namespace FinalProject.Data
 
 			try
 			{
-				_context.Games.Update(gameToUpdate);
-				_context.SaveChanges();
+				context.Games.Update(gameToUpdate);
+				context.SaveChanges();
 				return 1;
 			} 
 			catch (Exception)
@@ -66,15 +66,15 @@ namespace FinalProject.Data
 
 		public int? Add(Game game)
 		{
-			var games = _context.Games.Where(x => x.Title.Equals(game.Title)).FirstOrDefault();
+			var _game = context.Games.Where(x => x.Title.Equals(game.Title)).FirstOrDefault();
 
-			if (games != null)
+			if (_game != null)
 				return null;
 
 			try
 			{
-				_context.Games.Add(game);
-				_context.SaveChanges();
+				context.Games.Add(_game);
+				context.SaveChanges();
 				return 1;
 			} 
 			catch (Exception)

@@ -2,6 +2,7 @@
 using FinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 
 namespace FinalProject.Controllers
 {
@@ -27,6 +28,11 @@ namespace FinalProject.Controllers
 		[HttpGet("id")]
 		public IActionResult GetUserById(int id)
 		{
+			if(id == null || id == 0)
+			{
+				return Ok(_context.GetAllUsers().Take(5));
+			}
+
 			var user = _context.GetUserById(id);
 			if (user == null)
 				return NotFound(id);
